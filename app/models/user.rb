@@ -7,4 +7,13 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :email, :password, :password_confirmation
+  
+  has_many(
+  :board_ownerships,
+  :class_name => "BoardOwner",
+  :foreign_key => :user_id,
+  :primary_key => :id  
+  )
+  
+  has_many :boards, :through => :board_ownerships
 end

@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'devise'
+gem 'backbone-on-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
