@@ -4,7 +4,9 @@ window.Todorize = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    //fetch all the boards
+    var boards = new Todorize.Collections.Boards();
+    
   }
 };
 
