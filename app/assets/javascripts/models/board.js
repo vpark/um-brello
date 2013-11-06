@@ -1,3 +1,1 @@
-Todorize.Models.Board = Backbone.Model.extend({
-
-});
+Todorize.Models.Board = Backbone.Model.extend({});

@@ -1,16 +1,15 @@
 class UsersController < ApplicationController
-  def index
-    unless user_signed_in?
-      redirect_to new_user_registration_url
-    else
-      respond_to do |format|
-        format.html {render :index}
-        format.json {
-          @user_boards = BoardOwner.find_by_user_id(current_user.id)
-          render :json => @user_boards
-        }
-      end
-    end    
-  end
+  before_filter :check_signed_in
+  # respond_to :html, :json
+  #this does the same thing as what I have on index
   
+  def index
+    # respond_to do |format|
+    #   format.html {render :index}
+    #   format.json {
+        @user_boards = current_user.boards
+        render :json => @user_boards
+    #   }
+    # end    
+  end
 end

@@ -15,5 +15,5 @@ class User < ActiveRecord::Base
   :primary_key => :id  
   )
   
-  has_many :boards, :through => :board_ownerships
+  has_many :boards, :through => :board_ownerships, :source => :board
 end

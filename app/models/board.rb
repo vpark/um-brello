@@ -10,6 +10,6 @@ class Board < ActiveRecord::Base
   :primary_key => :id  
   )
   
-  has_many :users, :through => :board_ownerships
+  has_many :users, :through => :board_owners, :source => :user
   has_many :lists
 end
