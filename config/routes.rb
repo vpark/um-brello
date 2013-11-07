@@ -1,8 +1,8 @@
 Todorize::Application.routes.draw do
   devise_for :users
-  resources :users do
-    resources :boards
-  end
+  resources :users 
+  resources :boards
   
-  root to: 'users#index'
+  
+  root to: 'root#root'
 end

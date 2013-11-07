@@ -1,16 +1,18 @@
 Todorize.Routers.AppRouter = Backbone.Router.extend({
-  intialize: function(){
-    
+  initialize: function(boards, $rootEl){
+    this.boards = boards;
+    this.$rootEl = $rootEl;
+    console.log(this.boards);
   },
   routes: {
     "": "index",
   },
   
   index: function(){
-    var boards = new Todorize.Views.boardsIndex({
+    var boardsIndexView = new Todorize.Views.BoardsIndex({
       collection: this.boards
     });
-    this.$rootEl.html(boardsIndex.render().$el);
+    this.$rootEl.html(boardsIndexView.render().$el);
   }
   
   

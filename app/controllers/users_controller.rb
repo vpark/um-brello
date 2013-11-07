@@ -7,8 +7,8 @@ class UsersController < ApplicationController
     # respond_to do |format|
     #   format.html {render :index}
     #   format.json {
-        @user_boards = current_user.boards
-        render :json => @user_boards
+        # @user_boards = current_user.boards
+        # render :json => @user_boards
     #   }
     # end    
   end

@@ -6,12 +6,11 @@ window.Todorize = {
   initialize: function() {
     //fetch all the boards
     var $rootEl = $('#content');
-    var boards  = new Todorize.Collections.Boards(data.boards);
-    
+    var boards  = new Todorize.Collections.Boards();
     boards.fetch({
       success: function(){
         console.log(boards)
-        new Todorize.Routers.AppRouter(feeds);
+        new Todorize.Routers.AppRouter(boards, $rootEl);
         Backbone.history.start();
         // {pushState: true}
       },
