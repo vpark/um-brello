@@ -5,7 +5,6 @@ Todorize.Views.BoardsIndex = Backbone.View.extend({
   },
   
   render: function(){
-    console.log(this.collection);
     this.$el.html(this.template({
       boards: this.collection
     }));
@@ -15,4 +14,6 @@ Todorize.Views.BoardsIndex = Backbone.View.extend({
   events: {
     'click li': "showList"
   },
+  
+  //create the showList function that 
 });

@@ -1,0 +1,1 @@
+Todorize.Models.List = Backbone.Model.extend({});
