@@ -1,0 +1,19 @@
+<ul>
+<% lists.each(function (list) { %>
+  <li>
+    <%= list.escape("title") %>
+  </li> 
+  
+  <% var cards = list.attributes.cards %>
+  <% if(cards.length > 0){ %>
+    <ul>
+    <% cards.forEach(function(card) { %>
+      <li>
+        <%= card.title %>
+      </li> 
+      <% }) %>
+    </ul>
+    <% } %>
+
+  <% }); %>
+</ul>

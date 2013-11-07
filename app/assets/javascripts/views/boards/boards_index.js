@@ -1,4 +1,8 @@
 Todorize.Views.BoardsIndex = Backbone.View.extend({
+  // events: {
+  //   'click li': 'showList'
+  // },
+  
   template: JST['boards/index'],
   
   initialize: function(){
@@ -10,10 +14,12 @@ Todorize.Views.BoardsIndex = Backbone.View.extend({
     }));
     return this;
   },
+
+  // showList: function (event) {
+  //   event.preventDefault();
+  //   
+  //   var 
+  //   
+  // }
   
-  events: {
-    'click li': "showList"
-  },
-  
-  //create the showList function that 
 });

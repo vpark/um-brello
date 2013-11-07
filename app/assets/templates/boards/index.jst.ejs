@@ -1,6 +1,6 @@
 <ul>
 <% boards.each(function (board) { %>
-  <% var url = "/board/" + board.id + "/lists" %>
+  <% var url = "#/boards/" + board.id + "/lists" %>
   <li>
     <a href = <%= url %>> <%= board.escape("title") %> </a>
   </li> 
