@@ -1,19 +1,30 @@
-<ul>
-<% lists.each(function (list) { %>
-  <li>
-    <%= list.escape("title") %>
-  </li> 
+<style>
+  .btn-large { list-style-type: none; margin: 0; padding: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 143px;}
+</style>
   
-  <% var cards = list.attributes.cards %>
-  <% if(cards.length > 0){ %>
-    <ul>
-    <% cards.forEach(function(card) { %>
-      <li>
-        <%= card.title %>
-      </li> 
-      <% }) %>
-    </ul>
-    <% } %>
+<script>
+$(function() {
+  $()
+  
+  $( "ul.data(board)" ).sortable({
+    connectWith: "ul"
+  });
+  $( ".btn-large" ).disableSelection();
+    });
+</script>
 
+
+<% lists.each(function (list) { %>
+  <ul data-id="board" class="btn-large">
+    <%= list.escape("title") %>
+    
+    <% var cards = list.attributes.cards %>
+    <% if(cards.length > 0){ %>
+      <% cards.forEach(function(card) { %>
+        <li class="btn">
+          <%= card.title %>
+        </li> 
+        <% }) %>
+  </ul>
+    <% } %>
   <% }); %>
-</ul>
