@@ -1,30 +1,42 @@
 <style>
-  .btn-large { list-style-type: none; margin: 0; padding: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 143px;}
+  [data-id="list"] { list-style-type: none; margin: 0; padding: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 143px;}
+  
+  .container-placeholder { border-style: dotted; border-width: 3px; list-style-type: none; margin: 0; padding: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 143px;}
 </style>
   
 <script>
 $(function() {
-  $()
-  
-  $( "ul.data(board)" ).sortable({
-    connectWith: "ul"
+  $( "[data-id='list-container']" ).sortable({
+    // connectWith: "[data-id='list']",
+    items: "[data-id='list']",
+    tolerance: "pointer",
+    // helper: "clone",
+    placeholder: ".container-placeholder"
   });
-  $( ".btn-large" ).disableSelection();
+  
+  $( "ul.btn-large" ).sortable({
+    connectWith: "ul",
+    // tolerance: "pointer",
+    // items: "[data-id='card']"
+  });
+  
+  $( "[data-id='list']" ).disableSelection();
     });
 </script>
 
-
 <% lists.each(function (list) { %>
-  <ul data-id="board" class="btn-large">
+  <ul data-id="list" class="btn-large">
     <%= list.escape("title") %>
     
     <% var cards = list.attributes.cards %>
     <% if(cards.length > 0){ %>
       <% cards.forEach(function(card) { %>
-        <li class="btn">
+        <li data-id="card" class="btn">
           <%= card.title %>
         </li> 
         <% }) %>
-  </ul>
-    <% } %>
-  <% }); %>
+        <% } %>
+      </ul>
+      <% }); %>
+      
+<!-- <section class='container-placeholder'></section> -->
