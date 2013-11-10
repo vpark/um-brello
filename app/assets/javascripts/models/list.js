@@ -1,1 +1,3 @@
-Todorize.Models.List = Backbone.Model.extend({});
+Todorize.Models.List = Backbone.Model.extend({
+  urlRoot:'boards/:board_id/lists'
+});

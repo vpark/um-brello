@@ -1,6 +1,6 @@
 <ul class="nav nav-pills nav-stacked">
 <% boards.each(function (board) { %>
-  <% var url = "#/boards/" + board.id + "/lists" %>
+  <% var url = "#/boards/" + board.id %>
   <li>
     <a href = <%= url %>> <%= board.escape("title") %> </a>
   </li> 
