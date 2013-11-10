@@ -49,6 +49,20 @@ $(function() {
           </li> 
         <% }) %>
       <% } %>
+      <div>
+      <a class='add-card' href='#'>add a card...</a>
+        <div class='add-card-form' style='display: none;'>
+          <form class='add-card-form'>
+          <input 
+            class='add-card-form' 
+            type='text' 
+            name='card[title]' 
+            placeholder='insert new card'>
+    
+            <input class='add-card-form' type='submit'>
+          </form>
+        </div>
+      </div>
       </ul>
   <% }); %>
 </section>

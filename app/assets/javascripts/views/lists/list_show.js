@@ -4,20 +4,21 @@ Todorize.Views.ListShow = Backbone.View.extend({
   },
   
   events: {
-    'click .new-list': 'showAdd',
-    'submit form.new-list-form': 'addList'
+    'click .new-list': 'showAddList',
+    'submit form.new-list-form': 'addList',
+    'click a.add-card': 'showAddCard'
+    'submit form.new-card-form': 'addCard'
   },
   
   template: JST['lists/show'],
   
   
   render: function() {
-        console.log('rendered!')
     this.$el.html(this.template({lists: this.collection}));
     return this;
   },
   
-  showAdd: function() {
+  showAddList: function() {
     var newList = this.$el.find('div.new-list');
     var newListForm = this.$el.find('div.new-list-form');
     $(newList).hide();
@@ -50,5 +51,18 @@ Todorize.Views.ListShow = Backbone.View.extend({
     list.save();
     lists.add(list);
     this.render();
+  },
+  
+  showAddCard: function (event) {
+    event.preventDefault();
+    var addCardForm = $(event.target.parentElement).find('div');
+    addCardForm.show();
+  },
+  
+  addCard: function (event) {
+    event.preventDefault();
+    debugger;
   }
+  
+  
 });

@@ -4,9 +4,11 @@ class ListsController < ApplicationController
     render :json => @board.lists 
   end
   
-  # def create
-  #   @list = List.new(params[])
-  # end
-  
+  def create
+    @list = List.new(params[:list])
+    @list.save!
+    
+    render :json => @list
+  end
   
 end
