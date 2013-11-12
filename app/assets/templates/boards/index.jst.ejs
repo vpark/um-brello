@@ -5,4 +5,18 @@
     <a href = <%= url %>> <%= board.escape("title") %> </a>
   </li> 
   <% }); %>
+  
+  <!-- Add a board li -->
+  <li class='add-board'>
+    <a href="">Add a board...</a>
+    <form class='add-board-form' style='display: none;'>
+    <input 
+      class='add-board-form' 
+      type='text' 
+      name='board[title]' 
+      placeholder='insert new title'>
+    
+      <input class='add-board-form' type='submit'>
+    </form>
+  </li>
 </ul>

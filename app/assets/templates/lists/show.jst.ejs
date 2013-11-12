@@ -5,7 +5,6 @@
   
   .new-list-form {
     padding: 0px;
-
   }
   
   button.new-list-form {
@@ -21,27 +20,32 @@ $(function() {
     // connectWith: "[data-id='list']",
     items: ".list",
     tolerance: "pointer",
+    cancel: '.add-card',
     // helper: "clone",
     // placeholder: ".container-placeholder"
   });
   
   $( "ul.list" ).sortable({
     connectWith: "ul.list",
+    cancel: '.add-card',
     // tolerance: "pointer",
     // items: "[data-id='card']"
   });
   
   $( ".list" ).disableSelection();
+  // $('.add-card').disableSelection();
     });
 </script>
 
+<!-- lists interation -->
 <section class='list-container'>
   <% lists.each(function (list) { %>
     <ul class="btn-large list">
       <%= list.escape("title") %>
       <br>
+      
+      <!-- cards iteration -->
       <% var cards = list.attributes.cards %>
-    
       <% if(cards != undefined ){ %>
         <% cards.forEach(function(card) { %>
           <li class="btn card">
@@ -49,11 +53,13 @@ $(function() {
           </li> 
         <% }) %>
       <% } %>
-      <div>
-      <a class='add-card' href='#'>add a card...</a>
-        <div class='add-card-form' style='display: none;'>
-          <form class='add-card-form'>
-          <input 
+      
+      <!-- add a card div -->
+      <div class='add-card'>
+        <a class='add-card' href=''>add a card...</a>
+        <div class='add-card-form add-card' style='display: none;'>
+          <form data-list-id="<%= list.id %>" class='add-card-form add-card'>
+            <input 
             class='add-card-form' 
             type='text' 
             name='card[title]' 
@@ -63,20 +69,25 @@ $(function() {
           </form>
         </div>
       </div>
+      
       </ul>
   <% }); %>
 </section>
 
-<div class='btn-large new-list'>Add a new list</div>
+<!-- add a list div -->
+<div class='btn-large new-list'>
+  Add a new list
 
-<div class='btn-large new-list-form' style="display: none;">
-  <form class='new-list-form'>
-  <input 
-    class='new-list-form' 
-    type='text' 
-    name='list[title]' 
-    placeholder='insert new title'>
-    
-    <input class='new-list-form' type='submit'>
-  </form>
+  <div class='btn-large new-list-form' style="display: none;">
+    <form class='new-list-form'>
+    <input 
+      class='new-list-form' 
+      type='text' 
+      name='list[title]' 
+      placeholder='insert new title'>
+      <input class='new-list-form' type='submit'>
+    </form>
+  </div>
 </div>
+
+

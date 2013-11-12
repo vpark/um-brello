@@ -1,12 +1,13 @@
 Todorize.Views.BoardsIndex = Backbone.View.extend({
-  // events: {
-  //   'click li': 'showList'
-  // },
+  initialize: function(){
+    $('.container').click(this.hideBoard.bind(this));
+  },
+  
+  events: {
+    'click li.add-board': 'showAddBoard'
+  },
   
   template: JST['boards/index'],
-  
-  initialize: function(){
-  },
   
   render: function(){
     this.$el.html(this.template({
@@ -15,11 +16,19 @@ Todorize.Views.BoardsIndex = Backbone.View.extend({
     return this;
   },
 
-  // showList: function (event) {
-  //   event.preventDefault();
-  //   
-  //   var 
-  //   
-  // }
+  showAddBoard: function() {
+    event.preventDefault();
+    var newBoardForm = this.$el.find('form.add-board-form');
+    newBoardForm.show();
+  },
+
+  hideBoard: function(event) {
+    if(!$(event.target.parentElement).hasClass('add-board') && 
+    !$(event.target.parentElement).hasClass('add-board-form')){
+          
+      var newBoardForm = this.$el.find('form.add-board-form');
+      newBoardForm.hide();
+    }
+  },
   
 });
