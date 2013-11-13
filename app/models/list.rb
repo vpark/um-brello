@@ -4,5 +4,5 @@ class List < ActiveRecord::Base
   validates_presence_of :title, :board_id
   
   belongs_to :board
-  has_many :cards
+  has_many :cards, dependent: :destroy
 end

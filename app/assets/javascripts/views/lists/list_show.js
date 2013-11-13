@@ -1,14 +1,16 @@
 Todorize.Views.ListShow = Backbone.View.extend({
   initialize: function(){
-    $('.container').click(this.hideList.bind(this));
-    $('.container').click(this.hideCard.bind(this));
+    $('.todorize').click(this.hideList.bind(this));
+    $('.todorize').click(this.hideCard.bind(this));
   },
   
   events: {
     'click .new-list': 'showAddList',
     'submit form.new-list-form': 'addList',
+    'click div.delete-class': 'deleteList',
     'click a.add-card': 'showAddCard',
-    'submit form.add-card-form': 'addCard'
+    'submit form.add-card-form': 'addCard',
+    'click li.delete-card': 'deleteCard',
   },
   
   template: JST['lists/show'],
@@ -48,12 +50,30 @@ Todorize.Views.ListShow = Backbone.View.extend({
     attrs.list.board_id = currentBoard.id;
     var list = new Todorize.Models.List();
     var lists = currentBoard.get('lists');
-
+  
     list.set(attrs.list);
-    list.save();
-    lists.add(list);
+    var that = this;
+    list.save(list.toJSON(), {success: function() {
+      lists.add(list);
+      that.render();
+    }, error: function() {
+      console.log('error: list did not save');
+    }
+    });
+  },
+  
+  deleteList: function (event) {
+    event.preventDefault();
+    
+    var list_id = $(event.target).data('list-id')
+    var listToDel = this.collection.find(function (model){
+      return model.get('id') == list_id;
+    });
+    
+    listToDel.destroy();
     this.render();
   },
+  
   
   showAddCard: function (event) {
     event.preventDefault();
@@ -76,12 +96,30 @@ Todorize.Views.ListShow = Backbone.View.extend({
     currentList.attributes.cards.push(card.attributes);
     this.render();
   },
+  
   hideCard: function(event) {
     if(!$(event.target).hasClass('add-card') && !
         $(event.target).hasClass('add-card-form')){
         var allAddCardForm = this.$el.find('div.add-card-form');
           allAddCardForm.hide();
         }
+  },
+  
+  deleteCard: function (event) {
+    event.preventDefault();
+    
+    var list_id = $(event.target.parentElement).find('form').data('list-id')
+    var card_id = $(event.target).data('card-id')
+    var list = this.collection.get(list_id);
+    var cardToDel = new Todorize.Models.Card();
+    list.attributes.cards.forEach(function (model){
+      if(model.id == card_id) {
+        cardToDel.set(model);
+        debugger
+      }
+    });
+    cardToDel.destroy();
+    this.render();
   },
   
   

@@ -22,7 +22,6 @@ $(function() {
     tolerance: "pointer",
     cancel: '.add-card',
     // helper: "clone",
-    // placeholder: ".container-placeholder"
   });
   
   $( "ul.list" ).sortable({
@@ -38,56 +37,68 @@ $(function() {
 </script>
 
 <!-- lists interation -->
-<section class='list-container'>
-  <% lists.each(function (list) { %>
-    <ul class="btn-large list">
-      <%= list.escape("title") %>
-      <br>
+
+<table class='list-container'>
+  <tr>
+    <% lists.each(function (list) { %>
+      <td>
+      <ul class="btn-large list">
+        <%= list.escape("title") %>
+        
+        <!-- card delete button -->
+        <div class='delete-class' data-list-id='<%= list.id %>'>x</div>
+        <br>
       
-      <!-- cards iteration -->
-      <% var cards = list.attributes.cards %>
-      <% if(cards != undefined ){ %>
-        <% cards.forEach(function(card) { %>
-          <li class="btn card">
-            <%= card.title %>
-          </li> 
-        <% }) %>
-      <% } %>
+        <!-- cards iteration -->
+        <% var cards = list.attributes.cards %>
+        <% if(cards != undefined ){ %>
+          <% cards.forEach(function(card) { %>
+            <li class="btn card">
+              <%= card.title %>
+            </li> 
+            <li class="delete-card" data-card-id='<%= card.id %>'>
+              * delete
+            </li> 
+          <% }) %>
+        <% } %>
       
-      <!-- add a card div -->
-      <div class='add-card'>
-        <a class='add-card' href=''>add a card...</a>
-        <div class='add-card-form add-card' style='display: none;'>
-          <form data-list-id="<%= list.id %>" class='add-card-form add-card'>
-            <input 
-            class='add-card-form' 
-            type='text' 
-            name='card[title]' 
-            placeholder='insert new card'>
+        <!-- add a card div -->
+        <div class='add-card'>
+          <a class='add-card' href=''>add a card...</a>
+          <div class='add-card-form add-card' style='display: none;'>
+            <form data-list-id="<%= list.id %>" class='add-card-form add-card'>
+              <input 
+              class='add-card-form' 
+              type='text' 
+              name='card[title]' 
+              placeholder='insert new card'>
     
-            <input class='add-card-form' type='submit'>
+              <input class='add-card-form' type='submit'>
+            </form>
+          </div>
+        </div>
+      </ul>
+    </td>
+    <% }); %>
+
+
+<!-- add a list div -->
+    <td>
+      <div class='btn-large new-list'>
+        Add a new list
+
+        <div class='btn-large new-list-form' style="display: none;">
+          <form class='new-list-form'>
+          <input 
+            class='new-list-form' 
+            type='text' 
+            name='list[title]' 
+            placeholder='insert new title'>
+            <input class='new-list-form' type='submit'>
           </form>
         </div>
       </div>
-      
-      </ul>
-  <% }); %>
-</section>
-
-<!-- add a list div -->
-<div class='btn-large new-list'>
-  Add a new list
-
-  <div class='btn-large new-list-form' style="display: none;">
-    <form class='new-list-form'>
-    <input 
-      class='new-list-form' 
-      type='text' 
-      name='list[title]' 
-      placeholder='insert new title'>
-      <input class='new-list-form' type='submit'>
-    </form>
-  </div>
-</div>
-
+    </td>
+  </tr>
+</table>
 

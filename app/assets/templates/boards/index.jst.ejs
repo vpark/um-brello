@@ -1,22 +1,36 @@
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked board-index">
 <% boards.each(function (board) { %>
   <% var url = "#/boards/" + board.id %>
-  <li>
+  <li class='user-board' data-user-id="<%= board.escape('user_id') %>"t>
     <a href = <%= url %>> <%= board.escape("title") %> </a>
+    <a class ='delete-board' data-board-id ='<%= board.id %>' href="" > * Delete Board </a>
   </li> 
   <% }); %>
   
   <!-- Add a board li -->
+  
   <li class='add-board'>
     <a href="">Add a board...</a>
-    <form class='add-board-form' style='display: none;'>
-    <input 
-      class='add-board-form' 
-      type='text' 
-      name='board[title]' 
-      placeholder='insert new title'>
-    
-      <input class='add-board-form' type='submit'>
-    </form>
+ 
   </li>
 </ul>
+
+<form class='add-board-form' style='display: none;'>
+<input 
+  class='add-board-form' 
+  type='text' 
+  name='board[title]' 
+  placeholder='insert new title'>
+
+  <input class='add-board-form' type='submit'>
+</form>
+
+<form class='add-board-owner-form' style='display: none;'>
+<input 
+  type='hidden'
+  value="" 
+  name='board_owner[user_id]' 
+  placeholder='insert new title'>
+
+  <input class='' type='submit'>
+</form>

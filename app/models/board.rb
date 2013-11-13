@@ -11,5 +11,5 @@ class Board < ActiveRecord::Base
   )
   
   has_many :users, :through => :board_owners, :source => :user
-  has_many :lists
+  has_many :lists, dependent: :destroy
 end

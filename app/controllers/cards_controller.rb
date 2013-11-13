@@ -10,4 +10,11 @@ class CardsController < ApplicationController
     
     render :json => @card
   end
+  
+  def destroy
+    @card = Card.find(params[:id])
+    @card.destroy
+    
+    render :json => nil
+  end
 end
