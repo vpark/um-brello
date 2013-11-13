@@ -10,7 +10,7 @@ Todorize.Views.ListShow = Backbone.View.extend({
     'click div.delete-class': 'deleteList',
     'click a.add-card': 'showAddCard',
     'submit form.add-card-form': 'addCard',
-    'click li.delete-card': 'deleteCard',
+    'click li.card div.delete-card': 'deleteCard',
   },
   
   template: JST['lists/show'],
@@ -107,21 +107,24 @@ Todorize.Views.ListShow = Backbone.View.extend({
   
   deleteCard: function (event) {
     event.preventDefault();
-    
-    var list_id = $(event.target.parentElement).find('form').data('list-id')
-    var card_id = $(event.target).data('card-id')
+    // debugger
+    var list_id = $(event.target).closest('ul.list').data('list-id')
     var list = this.collection.get(list_id);
+
+    var card_id = $(event.target).data('card-id')
+    var cards = list.attributes.cards
+    
     var cardToDel = new Todorize.Models.Card();
-    var cardModel;
-    list.attributes.cards.forEach(function (model){
+    var cardIndex; 
+    
+    cards.forEach(function (model){
       if(model.id == card_id) {
         cardToDel.set(model);
-        cardModel = model;
+        cardIndex = cards.indexOf(model);
       }
     });
-    var cardModelIndex = list.attributes.cards.indexOf(cardModel);
-    console.log(cardModelIndex);
-    list.attributes.cards.splice(cardModelIndex,1);
+
+    list.attributes.cards.splice(cardIndex, 1);
     cardToDel.destroy();
     this.render();
   },

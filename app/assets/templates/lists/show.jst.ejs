@@ -3,6 +3,8 @@
   
   .new-list { list-style-type: none; margin: 0; padding: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 140px;}
   
+  li.card { list-style-type: none; margin: 4px; float: center; background: #cdc9c9; padding: 5px; width: 130px;}
+  
   .new-list-form {
     padding: 0px;
   }
@@ -18,21 +20,20 @@
 $(function() {
   $( '.list-container' ).sortable({
     // connectWith: "[data-id='list']",
-    items: ".list",
+    items: 'ul.list',
     tolerance: "pointer",
-    cancel: '.add-card',
+    // cancel: '.add-card',
     // helper: "clone",
   });
   
   $( "ul.list" ).sortable({
     connectWith: "ul.list",
-    cancel: '.add-card',
-    // tolerance: "pointer",
-    // items: "[data-id='card']"
+    tolerance: "pointer",
+    items: '.card',
   });
   
-  $( ".list" ).disableSelection();
-  // $('.add-card').disableSelection();
+  // $( ".list" ).disableSelection();
+  // $('.title-div').disableSelection();
     });
 </script>
 
@@ -42,22 +43,24 @@ $(function() {
   <tr>
     <% lists.each(function (list) { %>
       <td>
-      <ul class="btn-large list">
-        <%= list.escape("title") %>
+      <ul class="list" data-list-id='<%= list.id %>'>
+        <header class='list-header'>
+          <%= list.escape("title") %>
         
-        <!-- card delete button -->
-        <div class='delete-class' data-list-id='<%= list.id %>'>x</div>
+          <!-- card delete button -->
+          <div class='delete-class' data-list-id='<%= list.id %>'>x</div>
+        </header>
         <br>
-      
+        <div class='card'></div>
         <!-- cards iteration -->
         <% var cards = list.attributes.cards %>
         <% if(cards != undefined ){ %>
           <% cards.forEach(function(card) { %>
-            <li class="btn card">
+            <li class="card">
               <%= card.title %>
-            </li> 
-            <li class="delete-card" data-card-id='<%= card.id %>'>
-              * delete
+              <div class="delete-card" data-card-id='<%= card.id %>'>
+                * delete
+              </div> 
             </li> 
           <% }) %>
         <% } %>
@@ -77,6 +80,7 @@ $(function() {
             </form>
           </div>
         </div>
+        
       </ul>
     </td>
     <% }); %>
