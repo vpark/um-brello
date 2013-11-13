@@ -112,12 +112,16 @@ Todorize.Views.ListShow = Backbone.View.extend({
     var card_id = $(event.target).data('card-id')
     var list = this.collection.get(list_id);
     var cardToDel = new Todorize.Models.Card();
+    var cardModel;
     list.attributes.cards.forEach(function (model){
       if(model.id == card_id) {
         cardToDel.set(model);
-        debugger
+        cardModel = model;
       }
     });
+    var cardModelIndex = list.attributes.cards.indexOf(cardModel);
+    console.log(cardModelIndex);
+    list.attributes.cards.splice(cardModelIndex,1);
     cardToDel.destroy();
     this.render();
   },
