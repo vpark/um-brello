@@ -14,6 +14,7 @@ Todorize.Routers.AppRouter = Backbone.Router.extend({
       collection: this.boards
     });
     this.$sidebar.html(boardsIndexView.render().$el);
+    // this.$rootEl.html();
   },
   
   showList: function (board_id) {

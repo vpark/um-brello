@@ -19,6 +19,6 @@ class ListsController < ApplicationController
   end
   
   def sort
-    
+    puts params
   end
 end

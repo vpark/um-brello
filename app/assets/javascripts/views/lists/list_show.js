@@ -17,9 +17,9 @@ Todorize.Views.ListShow = Backbone.View.extend({
   
   
   render: function() {
-    // var board = this.model;
-    // var lists = board.get("lists");
-    this.$el.html(this.template({lists: this.collection}));
+    var board = this.model;
+    var lists = board.get("lists");
+    this.$el.html(this.template({lists: lists}));
     return this;
   },
   
@@ -85,17 +85,21 @@ Todorize.Views.ListShow = Backbone.View.extend({
   
   addCard: function (event) {
     event.preventDefault();
-    
+    var that = this;
     var list_id = $(event.target.parentElement).find('form').data('list-id'); 
     var card = new Todorize.Models.Card();
     var currentList = this.collection.get(list_id);
     var attrs = $(event.target).serializeJSON();
     attrs.card.list_id = list_id;    
     card.set(attrs.card);
-    card.save();
-    currentList.attributes.cards.push(card.attributes);
-    this.render();
-  },
+    card.save(card.toJSON(), {success: function() {
+      currentList.attributes.cards.push(card.attributes);
+      that.render();
+    }, error: function() {
+      console.log('error: list did not save');
+    }
+  });
+},
   
   hideCard: function(event) {
     if(!$(event.target).hasClass('add-card') && !
@@ -123,7 +127,7 @@ Todorize.Views.ListShow = Backbone.View.extend({
         cardIndex = cards.indexOf(model);
       }
     });
-
+    debugger
     list.attributes.cards.splice(cardIndex, 1);
     cardToDel.destroy();
     this.render();

@@ -23,13 +23,16 @@ $(function() {
     items: 'ul.list',
     tolerance: "pointer",
     stop: function(){
-      console.log($('.list-container').sortable('serialize'));
-      debugger
+      var listOrder = [];
+      $(this).children('ul.list').each(function(i, list){
+        var list_id = $(list).data('list-id');
+        listOrder.push(list_id);
+      })
       $.ajax({
         type: 'POST',
-        data: $(this).sortable('serialize'),
+        data: {list:listOrder},
         complete: function(request){
-          // console.log(request)
+          console.log(request)
         },
         url: 'lists/sort'
       })
@@ -51,14 +54,13 @@ $(function() {
 
 <!-- lists interation -->
 
-<table class='list-container'>
-  <tr>
+<div class='list-container'>
+  <!-- <tr> -->
     <% lists.each(function (list) { %>
-      <td>
+      <!-- <td> -->
       <ul class="list" data-list-id='<%= list.id %>'>
         <header class='list-header'>
           <%= list.escape("title") %>
-        
           <!-- card delete button -->
           <div class='delete-class' data-list-id='<%= list.id %>'>x</div>
         </header>
@@ -69,7 +71,8 @@ $(function() {
         <% if(cards != undefined ){ %>
           <% cards.forEach(function(card) { %>
             <li class="card">
-              <%= card.title %>
+
+              <%= card.title || card.attributes.title %>
               <div class="delete-card" data-card-id='<%= card.id %>'>
                 * delete
               </div> 
@@ -94,12 +97,12 @@ $(function() {
         </div>
         
       </ul>
-    </td>
+    <!-- </td> -->
     <% }); %>
 
 
 <!-- add a list div -->
-    <td>
+    <!-- <td> -->
       <div class='btn-large new-list'>
         Add a new list
 
@@ -114,7 +117,7 @@ $(function() {
           </form>
         </div>
       </div>
-    </td>
-  </tr>
-</table>
+    <!-- </td> -->
+  <!-- </tr> -->
+</div>
 
