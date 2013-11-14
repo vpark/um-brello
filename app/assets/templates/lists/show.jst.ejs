@@ -32,7 +32,7 @@ $(function() {
         type: 'POST',
         data: {list:listOrder},
         complete: function(request){
-          console.log(request)
+          // console.log(request)
         },
         url: 'lists/sort'
       })
@@ -71,7 +71,6 @@ $(function() {
         <% if(cards != undefined ){ %>
           <% cards.forEach(function(card) { %>
             <li class="card">
-
               <%= card.title || card.attributes.title %>
               <div class="delete-card" data-card-id='<%= card.id %>'>
                 * delete

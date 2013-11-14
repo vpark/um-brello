@@ -24,5 +24,7 @@ class ListsController < ApplicationController
     list_ids.each_with_index do |id, index|
       List.update_all({ position: index + 1 }, { id: id })
     end
+    
+    @lists = List.find(list_ids.first).board.lists
   end
 end
