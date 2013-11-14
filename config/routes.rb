@@ -3,7 +3,8 @@ Todorize::Application.routes.draw do
   resources :users 
   resources :cards
   resources :board_owners
-
+  post '/lists/sort', to: 'lists#sort'
+  
   resources :boards do
     resources :lists, :only => [:index]
   end

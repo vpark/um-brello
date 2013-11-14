@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Todorize</title>
+  
+  <title>SortTea</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -12,20 +13,50 @@
 </head>
 
 <body>
+  
+  <div class="navbar navbar-fixed-top">  
+    <div class="navbar-inner">  
+      <div class="container">  
+      
+        <ul class="nav">  
+          <li class="active">  
+            <a class="brand" 
+          <% if user_signed_in? %>
+            href=""
+          <% else %>
+            href="/users/sign_up"
+          <% end %>
+            >Sort.Tea</a>
+          </li>  
+          <% if user_signed_in? %>
+          <li>
+            <p class="navbar-text navbar-right">
+              Logged in as <strong><%= current_user.email %></strong></a>
+            </p>
+          </li>
+
+              <li><a href="<%= edit_user_registration_path %>" >
+                Edit Profile</a></li>  
+              <li><a href="<%= destroy_user_session_path %>" data-method="delete">
+                Logout</a></li>
+              
+              <% else %>
+              <li><a href="<%= new_user_registration_path %>">Sign Up</a></li>  
+              <li><a href="<%= new_user_session_path %>">Login</a></li>
+              
+          <% end %>
+        </ul> 
+      
+      </div>  
+    </div>  
+  </div> 
 
 <div class="todorize">
-
-  <% if user_signed_in? %>
-    Logged in as <strong><%= current_user.email %></strong>.
-    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-    <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-    <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-  <% end %>
   
+  <div class='container'>
 <%= yield %>
-
+  </div>
+  
 </div>
 </body>
 

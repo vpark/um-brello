@@ -17,4 +17,8 @@ class ListsController < ApplicationController
     
     render :json => nil
   end
+  
+  def sort
+    
+  end
 end

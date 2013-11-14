@@ -22,6 +22,18 @@ $(function() {
     // connectWith: "[data-id='list']",
     items: 'ul.list',
     tolerance: "pointer",
+    stop: function(){
+      console.log($('.list-container').sortable('serialize'));
+      debugger
+      $.ajax({
+        type: 'POST',
+        data: $(this).sortable('serialize'),
+        complete: function(request){
+          // console.log(request)
+        },
+        url: 'lists/sort'
+      })
+    }
     // cancel: '.add-card',
     // helper: "clone",
   });
