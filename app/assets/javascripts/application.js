@@ -17,6 +17,7 @@
 //= require twitter/bootstrap
 //= require underscore
 //= require backbone
+//= require nesting.js
 //= require todorize
 //= require_tree ../templates
 //= require_tree ./models

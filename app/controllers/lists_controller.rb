@@ -19,6 +19,10 @@ class ListsController < ApplicationController
   end
   
   def sort
-    puts params
+    list_ids = params[:list].map(&:to_i)
+    
+    list_ids.each_with_index do |id, index|
+      List.update_all({ position: index + 1 }, { id: id })
+    end
   end
 end

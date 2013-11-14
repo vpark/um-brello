@@ -2,6 +2,7 @@ Todorize.Views.ListShow = Backbone.View.extend({
   initialize: function(){
     $('.todorize').click(this.hideList.bind(this));
     $('.todorize').click(this.hideCard.bind(this));
+    this.collection.on('sort reset', this.render, this);
   },
   
   events: {
@@ -92,6 +93,7 @@ Todorize.Views.ListShow = Backbone.View.extend({
     var attrs = $(event.target).serializeJSON();
     attrs.card.list_id = list_id;    
     card.set(attrs.card);
+    debugger
     card.save(card.toJSON(), {success: function() {
       currentList.attributes.cards.push(card.attributes);
       that.render();
