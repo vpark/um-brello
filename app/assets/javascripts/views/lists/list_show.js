@@ -18,8 +18,8 @@ Todorize.Views.ListShow = Backbone.View.extend({
   
   
   render: function() {
-    this.$el.html(this.template({lists: this.collection}));
-
+    this.$el.html(this.template({lists: this.collection.toJSON()}));
+    
 
     return this;
   },
@@ -56,8 +56,7 @@ Todorize.Views.ListShow = Backbone.View.extend({
     list.set(attrs.list);
     var that = this;
     list.save(list.toJSON(), {success: function() {
-      lists.add(list);
-      that.render();
+      that.collection.add(list);
     }, error: function() {
       console.log('error: list did not save');
     }
@@ -80,6 +79,7 @@ Todorize.Views.ListShow = Backbone.View.extend({
     event.preventDefault();
     var allAddCardForm = this.$el.find('div.add-card-form');
     var addCardForm = $(event.target.parentElement).find('div');
+    $(event.target).hide();
     allAddCardForm.hide();
     addCardForm.show();
   },
@@ -94,9 +94,13 @@ Todorize.Views.ListShow = Backbone.View.extend({
     attrs.card.list_id = list_id;   
     card.set(attrs.card);
     card.save(card.toJSON(), {success: function() {
+      that;
+      list_id;
+      var curCards = new Todorize.Collections.Cards(currentList.get('cards'));
+      curCards.add(card.toJSON());
+      currentList.set('cards', curCards.toJSON());
       // currentList.attributes.cards.push(card.attributes);
-      currentList.set('cards', currentList.get('cards').concat(card.attributes));
-      that.render();
+      // currentList.set('cards', );
     }, error: function() {
       console.log('error: list did not save');
     }
@@ -107,7 +111,9 @@ Todorize.Views.ListShow = Backbone.View.extend({
     if(!$(event.target).hasClass('add-card') && !
         $(event.target).hasClass('add-card-form')){
         var allAddCardForm = this.$el.find('div.add-card-form');
+        var allAddCardButton = this.$el.find('a.add-card')
           allAddCardForm.hide();
+          allAddCardButton.show();
         }
   },
   

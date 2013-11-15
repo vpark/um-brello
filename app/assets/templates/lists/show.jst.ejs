@@ -1,17 +1,147 @@
 <style>
-  .list { list-style-type: none; margin: 0; padding: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 140px;}
-  
+  .list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    float: left;
+    margin-right: 10px;
+    background: #eee;
+    width: 206px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-left: 9px;
+  }
+
   .new-list { list-style-type: none; margin: 0; padding: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 140px;}
   
-  li.card { list-style-type: none; margin: 4px; float: center; background: #cdc9c9; padding: 5px; width: 130px;}
+  li.card {
+    list-style-type: none;
+    margin: 4px;
+    float: center;
+    background: #cdc9c9;
+    padding: 5px;
+    width: 182px;
+    border: 1px solid rgba(197, 197, 197, 1);
+    border-radius: 3px;
+    background-color: rgba(243, 243, 243, 1);
+    color: rgb(73, 73, 73);
+    overflow: hidden;
+    margin: 0 auto 10px auto;
+  }
+  
+  li.card:hover {
+    background-color: white;
+    cursor: pointer;
+  }
   
   .new-list-form {
     padding: 0px;
   }
   
-  button.new-list-form {
-    width: 100px;
-    height: 20px;
+  header.list-header {
+    padding: 7px;
+    background-color: rgba(150, 150, 150, 0.8);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color:  white;
+    position: relative;
+    font-weight: 200;
+    text-align: center;
+    font-size: 17px;
+  }
+
+  .delete-class {
+    position: absolute;
+    top: 0;
+    padding: 5px 9px;
+    right: 0;
+    bottom: 0;
+    /* background-color: rgba(240, 240, 240, 0.8); */
+    cursor: pointer;
+    border-top-right-radius: 5px;
+    /* font-weight: bold; */
+    color: white;
+    /* font-size: 14pt; */
+    background-color: rgba(199, 144, 144, .4);
+    display: none;
+  }
+
+  .add-card {
+    display: block;
+    /* background-color: red; */
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-align: center;
+    padding: 2px 0;
+    color: rgba(156, 156, 156, 1);
+  }
+  
+  .list-header:hover > .delete-class {
+  display: block;
+  }
+  
+  a.add-card:hover {
+  text-decoration: underline;
+  background-color: rgba(209, 209, 209, 0.8);
+  color: rgba(122, 141, 201, 1)!important;
+  }
+  
+  div.new-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 7px 0px 7px 0px;
+    float: left;
+    margin-right: 10px;
+    background: #eee;
+    width: 206px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-left: 9px;
+    text-align: center;
+    font-size: 17px;
+    color: rgba(15, 58, 112, 0.5);
+  }
+  
+  div.new-list:hover {
+  background: rgba(184, 184, 184, 0.5);
+      color: rgb(124, 169, 226);
+  }
+  
+  input.new-list-form {
+    width: 87%;
+    margin: 10px 0px 010px 0px;
+  }
+  
+  input.new-list-form-button {
+    margin: 10px 0px 0px;
+    width: 80%;
+    height: 25px;
+  }
+  
+  div.delete-card {
+    color: rgba(0, 0, 0, 0);
+    background-color: hidden;
+    text-align: center;
+  }
+  
+  div.delete-card:hover{
+    background-color: rgba(214, 183, 183, 0.26);
+    color: white;
+  }
+  
+  input.add-card-form {
+    width: 87%;
+    margin: 10px 0px 010px 0px;
+  }
+  
+  input.add-card-form-button {
+    margin: 10px 0px 0px;
+    width: 80%;
+    height: 25px;
   }
 </style>
 
@@ -53,9 +183,9 @@ $(document).ready(function() {
       connectWith: "ul.list",
       tolerance: "pointer",
       items: '.card',
-      update: function(){
-        
-      }
+      // update: function(){
+      //   
+      // }
     });
 });
 
@@ -66,28 +196,28 @@ $(document).ready(function() {
 
 <div class='list-container'>
   <!-- <tr> -->
-    <% lists.each(function (list) { %>
+    <% _.each(lists, function(list) { %>
       <!-- <td> -->
-      <ul class="list" data-list-id='<%= list.id %>' data-list-position='<%= list.escape('position') %>'>
+      <ul class="list" data-list-id='<%= list.id %>' data-list-position='<%= _.escape(list.position) %>'>
         <header class='list-header'>
-          <%= list.escape("title") %>
+          <%= _.escape(list.title) %>
           <!-- card delete button -->
           <div class='delete-class' data-list-id='<%= list.id %>'>x</div>
         </header>
         <br>
         <div class='card'></div>
         <!-- cards iteration -->
-        <% var cards = list.attributes.cards %>
-        <% if(cards != undefined ){ %>
-          <% cards.forEach(function(card) { %>
+        <% var cards = list.cards %>
+        <!-- <% if(cards != undefined ){ %> -->
+          <% _.each(cards, function(card) { %>
             <li class="card">
-              <%= card.title || card.attributes.title %>
+              <%= card.title %>
               <div class="delete-card" data-card-id='<%= card.id %>'>
-                * delete
+                delete card
               </div> 
             </li> 
           <% }) %>
-        <% } %>
+        <!-- <% } %> -->
       
         <!-- add a card div -->
         <div class='add-card'>
@@ -100,7 +230,7 @@ $(document).ready(function() {
               name='card[title]' 
               placeholder='insert new card'>
     
-              <input class='add-card-form' type='submit'>
+              <input class='add-card-form btn add-card-form-button' type='submit'>
             </form>
           </div>
         </div>
@@ -118,11 +248,11 @@ $(document).ready(function() {
         <div class='btn-large new-list-form' style="display: none;">
           <form class='new-list-form'>
           <input 
-            class='new-list-form' 
+            class='new-list-form' f
             type='text' 
             name='list[title]' 
-            placeholder='insert new title'>
-            <input class='new-list-form' type='submit'>
+            placeholder='insert new list'>
+            <input class='new-list-form btn new-list-form-button' type='submit'>
           </form>
         </div>
       </div>
