@@ -148,6 +148,15 @@
     width: 80%;
     height: 25px;
   }
+  
+/*  .card-placeholder {
+    background-color: black;
+    width: 182px;
+    height: 100px;
+    display: block;
+
+  }*/
+  
 </style>
 
 <script>
@@ -160,7 +169,6 @@ $(document).ready(function() {
       // connectWith: "[data-id='list']",
       items: 'ul.list',
       tolerance: "pointer",
-      // placeholder: "card-placeholder",
       update: function(){
         var listOrder = [];
         $(this).children('ul.list').each(function(i, list){
@@ -199,7 +207,6 @@ $(document).ready(function() {
 </script>
 
 <!-- lists interation -->
-
 
 <div class='list-container'>
   <!-- <tr> -->
