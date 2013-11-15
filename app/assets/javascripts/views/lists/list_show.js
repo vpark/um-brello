@@ -76,7 +76,6 @@ Todorize.Views.ListShow = Backbone.View.extend({
     this.render();
   },
   
-  
   showAddCard: function (event) {
     event.preventDefault();
     var allAddCardForm = this.$el.find('div.add-card-form');
