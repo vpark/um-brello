@@ -1,9 +1,94 @@
+<style>
+li.user-board {
+  overflow: hidden;
+  margin: 17px auto;
+  background: rgba(255, 255, 255, 1);
+  width: 200px;
+  border-radius: 5px;
+  color: rgba(143, 143, 143, 0.5);
+  font-size: 18px!important;
+  border: 1px solid rgb(187, 186, 186);
+  text-align: left;
+  font-family: 'Helvetica Neue';
+  font-weight: 100;
+
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.15);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.15);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.15);
+}
+
+li.user-board:hover {
+  font-weight: 200;
+  
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.25);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.25);
+}
+
+li.add-board {
+  overflow: hidden;
+  margin: 17px auto;
+  background: rgba(255, 255, 255, 1);
+  width: 200px;
+  border-radius: 5px;
+  color: rgba(143, 143, 143, 0.5);
+  font-size: 18px!important;
+  border: 1px solid rgb(187, 186, 186);
+  text-align: left;
+  font-family: 'Helvetica Neue';
+  font-weight: 100;
+
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.15);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.15);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.15);
+}
+
+li.add-board:hover {
+  font-weight: 200;
+  
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.25);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.25);
+}
+
+li > form > input.add-board-form {
+  margin: 12px 8px 0px;
+  width: 84%;
+  height: 25px;
+}
+
+li > form > input.add-board-form-button {
+  margin: 10px 0px 0px 15px !important;
+  width: 84%;
+  height: 25px;
+}
+
+li.user-board:hover {
+  color:#ADADAD !important;
+/*  background: rgba(184, 184, 184, 0.5);*/
+}
+
+a.delete-board {
+  color: rgba(0, 0, 0, 0);
+  background-color: hidden !important;
+  text-align: center;
+  font: 10px !important;
+}
+
+a.delete-board:hover{
+  background-color: rgba(214, 183, 183, 0.26)!important;
+  color: white;
+  border-radius:5px 5px 5px 5px !important;
+}
+</style>
+
 <ul class="nav nav-pills nav-stacked board-index">
+<!-- <li class="sidebar-brand header"><a href="">My Boards</a></li> -->
 <% boards.each(function (board) { %>
   <% var url = "#/boards/" + board.id %>
-  <li class='user-board' data-user-id="<%= board.escape('user_id') %>"t>
+  <li class='user-board' data-user-id="<%= board.escape('user_id') %>">
     <a href = <%= url %>> <%= board.escape("title") %> </a>
-    <a class ='delete-board' data-board-id ='<%= board.id %>' href="" > * Delete Board </a>
+    <a class ='delete-board' data-board-id ='<%= board.id %>' href="" > delete board </a>
   </li> 
   <% }); %>
   
@@ -11,19 +96,18 @@
   
   <li class='add-board'>
     <a href="">Add a board...</a>
- 
+    <form class='add-board-form' style='display: none;'>
+    <input 
+      class='add-board-form' 
+      type='text' 
+      name='board[title]' 
+      placeholder='insert new title'>
+
+      <input class='add-board-form-button btn' type='submit'>
+    </form>
   </li>
 </ul>
 
-<form class='add-board-form' style='display: none;'>
-<input 
-  class='add-board-form' 
-  type='text' 
-  name='board[title]' 
-  placeholder='insert new title'>
-
-  <input class='add-board-form' type='submit'>
-</form>
 
 <form class='add-board-owner-form' style='display: none;'>
 <input 

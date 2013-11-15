@@ -4,7 +4,7 @@ Todorize.Views.BoardsIndex = Backbone.View.extend({
   },
   
   events: {
-    'click li.add-board': 'showAddBoard',
+    'click .add-board > a': 'showAddBoard',
     'submit form.add-board-form': 'addBoard',
     'click li.user-board a.delete-board': 'deleteBoard',
   },

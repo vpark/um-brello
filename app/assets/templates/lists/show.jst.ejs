@@ -1,4 +1,8 @@
 <style>
+  div.list-container {
+    padding-top: 16px;
+  }
+
   .list {
     list-style-type: none;
     margin: 0;
@@ -131,6 +135,7 @@
   div.delete-card:hover{
     background-color: rgba(214, 183, 183, 0.26);
     color: white;
+    border-radius: 5px;
   }
   
   input.add-card-form {
@@ -155,6 +160,7 @@ $(document).ready(function() {
       // connectWith: "[data-id='list']",
       items: 'ul.list',
       tolerance: "pointer",
+      // placeholder: "card-placeholder",
       update: function(){
         var listOrder = [];
         $(this).children('ul.list').each(function(i, list){
@@ -193,6 +199,7 @@ $(document).ready(function() {
 </script>
 
 <!-- lists interation -->
+
 
 <div class='list-container'>
   <!-- <tr> -->
