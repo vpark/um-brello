@@ -2,7 +2,7 @@ Todorize.Views.ListShow = Backbone.View.extend({
   initialize: function(){
     $('.todorize').click(this.hideList.bind(this));
     $('.todorize').click(this.hideCard.bind(this));
-    this.collection.on('sort reset', this.render, this);
+    this.collection.on('all', this.render, this);
   },
   
   events: {
@@ -18,9 +18,9 @@ Todorize.Views.ListShow = Backbone.View.extend({
   
   
   render: function() {
-    var board = this.model;
-    var lists = board.get("lists");
-    this.$el.html(this.template({lists: lists}));
+    this.$el.html(this.template({lists: this.collection}));
+
+
     return this;
   },
   
@@ -49,9 +49,10 @@ Todorize.Views.ListShow = Backbone.View.extend({
     var currentBoard = this.model;
     var attrs = $(event.target).serializeJSON();
     attrs.list.board_id = currentBoard.id;
+
     var list = new Todorize.Models.List();
     var lists = currentBoard.get('lists');
-  
+    attrs.list.position = lists.length;
     list.set(attrs.list);
     var that = this;
     list.save(list.toJSON(), {success: function() {
@@ -91,11 +92,11 @@ Todorize.Views.ListShow = Backbone.View.extend({
     var card = new Todorize.Models.Card();
     var currentList = this.collection.get(list_id);
     var attrs = $(event.target).serializeJSON();
-    attrs.card.list_id = list_id;    
+    attrs.card.list_id = list_id;   
     card.set(attrs.card);
-    debugger
     card.save(card.toJSON(), {success: function() {
-      currentList.attributes.cards.push(card.attributes);
+      // currentList.attributes.cards.push(card.attributes);
+      currentList.set('cards', currentList.get('cards').concat(card.attributes));
       that.render();
     }, error: function() {
       console.log('error: list did not save');
@@ -129,7 +130,6 @@ Todorize.Views.ListShow = Backbone.View.extend({
         cardIndex = cards.indexOf(model);
       }
     });
-    debugger
     list.attributes.cards.splice(cardIndex, 1);
     cardToDel.destroy();
     this.render();

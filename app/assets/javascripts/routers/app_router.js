@@ -13,8 +13,11 @@ Todorize.Routers.AppRouter = Backbone.Router.extend({
     var boardsIndexView = new Todorize.Views.BoardsIndex({
       collection: this.boards
     });
+    
+    var boardsNewView = new Todorize.Views.BoardsNew({});
+    
     this.$sidebar.html(boardsIndexView.render().$el);
-    // this.$rootEl.html();
+    this.$rootEl.html(boardsNewView.render().$el);
   },
   
   showList: function (board_id) {
@@ -29,7 +32,8 @@ Todorize.Routers.AppRouter = Backbone.Router.extend({
     
     this.index();
     this.$rootEl.html(listShow.render().$el);
-    // lists.fetch();
+    // debugger;
+    this.boards.fetch();
   }
   
   

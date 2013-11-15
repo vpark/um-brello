@@ -2,7 +2,7 @@
 <html>
 <head>
   
-  <title>SortTea</title>
+  <title>Um.brello</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -21,12 +21,8 @@
         <ul class="nav">  
           <li class="active">  
             <a class="brand" 
-          <% if user_signed_in? %>
-            href=""
-          <% else %>
-            href="/users/sign_up"
-          <% end %>
-            >Sort.Tea</a>
+          href="<%= root_url %>"
+            >Um.brello</a>
           </li>  
           <% if user_signed_in? %>
           <li class="divider-vertical"></li>
@@ -55,7 +51,9 @@
 <div class="todorize">
   
   <div class='container'>
-<%= yield %>
+
+    <%= yield %>
+
   </div>
   
 </div>

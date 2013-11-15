@@ -1,5 +1,5 @@
 class List < ActiveRecord::Base
-  attr_accessible :title, :board_id
+  attr_accessible :title, :board_id, :position
   
   validates_presence_of :title, :board_id
   

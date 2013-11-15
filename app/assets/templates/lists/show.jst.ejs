@@ -15,45 +15,48 @@
   }
 </style>
 
-
 <script>
-$(function() {
-  $( '.list-container' ).sortable({
-    // connectWith: "[data-id='list']",
-    items: 'ul.list',
-    tolerance: "pointer",
-    update: function(){
-      var listOrder = [];
-      $(this).children('ul.list').each(function(i, list){
-        var list_id = $(list).data('list-id');
-        listOrder.push(list_id);
-      })
-      $.ajax({
-        type: 'POST',
-        data: {list:listOrder},
-        complete: function(request){
-          // console.log(request)
-        },
-        url: 'lists/sort',
-        success: function(data) {
-          board.get('list').reset(data);
-        }
-        
-      })
-    }
-    // cancel: '.add-card',
-    // helper: "clone",
-  });
-  
-  $( "ul.list" ).sortable({
-    connectWith: "ul.list",
-    tolerance: "pointer",
-    items: '.card',
-  });
-  
-  // $( ".list" ).disableSelection();
-  // $('.title-div').disableSelection();
+$(document).ready(function() {
+  var $listContainer = $('.list-container');
+  var $ulList = $( "ul.list" );
+
+
+    $listContainer.sortable({
+      // connectWith: "[data-id='list']",
+      items: 'ul.list',
+      tolerance: "pointer",
+      update: function(){
+        var listOrder = [];
+        $(this).children('ul.list').each(function(i, list){
+          var list_id = $(list).data('list-id');
+          listOrder.push(list_id);
+        })
+        $.ajax({
+          type: 'POST',
+          data: {list:listOrder},
+          datatype: 'json',
+          complete: function(request){
+            // console.log(request)
+          },
+          url: 'lists/sort',
+          // success: function(data) {
+          //   that.model.get('list').reset(data);
+          // }
+    
+        })
+      }
+      // cancel: '.add-card',
+      // helper: "clone",
     });
+
+    $ulList.sortable({
+      connectWith: "ul.list",
+      tolerance: "pointer",
+      items: '.card',
+    });
+});
+
+
 </script>
 
 <!-- lists interation -->
@@ -62,7 +65,7 @@ $(function() {
   <!-- <tr> -->
     <% lists.each(function (list) { %>
       <!-- <td> -->
-      <ul class="list" data-list-id='<%= list.id %>'>
+      <ul class="list" data-list-id='<%= list.id %>' data-list-position='<%= list.escape('position') %>'>
         <header class='list-header'>
           <%= list.escape("title") %>
           <!-- card delete button -->
