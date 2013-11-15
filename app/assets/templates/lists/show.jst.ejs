@@ -22,7 +22,7 @@ $(function() {
     // connectWith: "[data-id='list']",
     items: 'ul.list',
     tolerance: "pointer",
-    stop: function(){
+    update: function(){
       var listOrder = [];
       $(this).children('ul.list').each(function(i, list){
         var list_id = $(list).data('list-id');
@@ -34,7 +34,11 @@ $(function() {
         complete: function(request){
           // console.log(request)
         },
-        url: 'lists/sort'
+        url: 'lists/sort',
+        success: function(data) {
+          board.get('list').reset(data);
+        }
+        
       })
     }
     // cancel: '.add-card',

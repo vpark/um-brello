@@ -29,7 +29,7 @@ Todorize.Routers.AppRouter = Backbone.Router.extend({
     
     this.index();
     this.$rootEl.html(listShow.render().$el);
-    lists.fetch();
+    // lists.fetch();
   }
   
   

@@ -26,5 +26,6 @@ class ListsController < ApplicationController
     end
     
     @lists = List.find(list_ids.first).board.lists
+    render :json => @lists
   end
 end
