@@ -8,9 +8,11 @@ window.Todorize = {
     var $rootEl = $('#content');
     var $sidebar = $('#sidebar');
     var boards  = new Todorize.Collections.Boards();
+    var user = new Todorize.Models.User();
+    user.fetch();
     boards.fetch({
       success: function(){
-        new Todorize.Routers.AppRouter(boards, $rootEl, $sidebar);
+        new Todorize.Routers.AppRouter(user, boards, $rootEl, $sidebar);
         Backbone.history.start();
         // {pushState: true}
       },

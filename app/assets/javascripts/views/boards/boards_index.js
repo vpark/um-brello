@@ -1,6 +1,7 @@
 Todorize.Views.BoardsIndex = Backbone.View.extend({
   initialize: function(){
     $('.todorize').click(this.hideBoard.bind(this));
+    this.render();
   },
   
   events: {
@@ -13,6 +14,7 @@ Todorize.Views.BoardsIndex = Backbone.View.extend({
   
   render: function(){
     this.$el.html(this.template({
+      // user: this.user,
       boards: this.collection
     }));
     return this;
@@ -35,8 +37,7 @@ Todorize.Views.BoardsIndex = Backbone.View.extend({
   
   addBoard: function (event) {
     event.preventDefault();
-    
-    var user_id = this.$el.find('.user-board').first().data('user-id')
+    var user_id = this.id;
     var currentBoards = this.collection;
     
     var newBoard = new Todorize.Models.Board();
