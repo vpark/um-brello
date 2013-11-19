@@ -23,6 +23,10 @@ group :assets do
   gem "less-rails"
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 gem 'jquery-rails'
 gem 'better_errors'
 gem 'binding_of_caller'
@@ -44,3 +48,4 @@ gem 'jquery-ui-rails'
 
 # To use debugger
 # gem 'debugger'
+ruby '2.0.0'
