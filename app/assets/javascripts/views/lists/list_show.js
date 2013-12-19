@@ -12,6 +12,7 @@ Todorize.Views.ListShow = Backbone.View.extend({
     'click a.add-card': 'showAddCard',
     'submit form.add-card-form': 'addCard',
     'click li.card div.delete-card': 'deleteCard',
+    'dblclick li.card': 'showComment'
   },
   
   template: JST['lists/show'],
@@ -96,6 +97,7 @@ Todorize.Views.ListShow = Backbone.View.extend({
     card.save(card.toJSON(), {success: function() {
       that;
       list_id;
+      // look into here for the glitched card add
       var curCards = new Todorize.Collections.Cards(currentList.get('cards'));
       curCards.add(card.toJSON());
       currentList.set('cards', curCards.toJSON());
@@ -119,7 +121,6 @@ Todorize.Views.ListShow = Backbone.View.extend({
   
   deleteCard: function (event) {
     event.preventDefault();
-    // debugger
     var list_id = $(event.target).closest('ul.list').data('list-id')
     var list = this.collection.get(list_id);
 
@@ -140,5 +141,13 @@ Todorize.Views.ListShow = Backbone.View.extend({
     this.render();
   },
   
+  showComments: function (event) {
+    alert('derp');
+    var url = $(event.target).data('url-id');
+    console.log(url);
+    
+    
+    
+  }
   
 });

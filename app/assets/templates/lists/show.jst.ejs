@@ -216,6 +216,7 @@ $(document).ready(function() {
         <header class='list-header'>
           <%= _.escape(list.title) %>
           <!-- card delete button -->
+
           <div class='delete-class' data-list-id='<%= list.id %>'>x</div>
         </header>
         <br>
@@ -224,7 +225,8 @@ $(document).ready(function() {
         <% var cards = list.cards %>
         <!-- <% if(cards != undefined ){ %> -->
           <% _.each(cards, function(card) { %>
-            <li class="card">
+            <% var url = "board/" + list.board_id + "/lists/" + list.id + "/card/" + card.id %>
+            <li class="card" data-url-id="<%= url %>">
               <%= card.title %>
               <div class="delete-card" data-card-id='<%= card.id %>'>
                 delete card
@@ -262,7 +264,7 @@ $(document).ready(function() {
         <div class='btn-large new-list-form' style="display: none;">
           <form class='new-list-form'>
           <input 
-            class='new-list-form' f
+            class='new-list-form'
             type='text' 
             name='list[title]' 
             placeholder='insert new list'>

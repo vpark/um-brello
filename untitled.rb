@@ -6,3 +6,6 @@
   <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
   <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
+
+# todo:
+# fix up adding Board stuff the template unncessarily calls board for its id

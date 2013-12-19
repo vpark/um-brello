@@ -7,6 +7,7 @@ window.Todorize = {
     //fetch all the boards
     var $rootEl = $('#content');
     var $sidebar = $('#sidebar');
+    var $modalView = $('#modal-view');
     var boards  = new Todorize.Collections.Boards();
     var user = new Todorize.Models.User();
     user.fetch();
