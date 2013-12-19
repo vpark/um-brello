@@ -3,6 +3,10 @@ Todorize::Application.routes.draw do
   resources :users 
   resources :cards
   resources :board_owners
+  
+  get "/login", :to => "devise/sessions#new" 
+  
+  
   post '/lists/sort', to: 'lists#sort'
   
   resources :boards do

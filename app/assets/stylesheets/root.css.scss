@@ -1,3 +1,31 @@
-// Place all the styles related to the root controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.carousel-inner > .item > img {
+  margin: 0 auto; 
+}
+
+.carousel-caption {
+  max-width: 100%;
+  padding: 50px;
+  margin:0 auto;
+  margin-top: 200px;
+  text-align:center;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+
+.imgframe {
+  text-align: center;
+  display: block;
+}
+
+.column-row {
+  margin: 0;
+  padding: 0 5% 0 5%;
+}
+
+.column-row .span4 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 33.3%;
+  
+}

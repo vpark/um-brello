@@ -9,42 +9,17 @@
 </div>
 <% else %>
 
-<style>
-.carousel-inner > .item > img { margin: 0 auto; }
-.carousel-caption {
-      max-width: 100%;
-      padding: 50px;
-      margin:0 auto;
-      margin-top: 200px;
-      text-align:center;
-      background: rgba(255, 255, 255, 0.75);
-}
-
-
-.imgframe {
-  text-align: center;
-  display: block;
-}
-
-/*.imgframe > img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-}*/
-
-
-</style>
-    <!-- Carousel
-    ================================================== -->
+    <!-- Carousel -->
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
-        <div class="item">
+        <div class="item active">
           <img src="http://i.imgur.com/TE9g0I5.jpg" alt="">
           <div class="container">
             <div class="carousel-caption">
               <h1>Plan ahead and stay on task.</h1>
 
               <a class="btn btn-large btn-primary" href="users/sign_up">Sign up today</a>
+              <a class="btn btn-large btn-danger" href="users/sign_in">Try demo account</a>
             </div>
           </div>
         </div>
@@ -55,16 +30,18 @@
               <h1>Collaborate with other users.</h1>
 
               <a class="btn btn-large btn-primary" href="users/sign_up">Sign up today</a>
+              <a class="btn btn-large btn-danger" href="users/sign_in">Try demo account</a>
             </div>
           </div>
         </div>
-        <div class="item active">
+        <div class="item">
           <img src="http://i.imgur.com/jb7vcVr.jpg" alt="">
           <div class="container">
             <div class="carousel-caption">
               <h1>Tired of listing chores on paper?</h1>
 
               <a class="btn btn-large btn-primary" href="users/sign_up">Sign up today</a>
+              <a class="btn btn-large btn-danger" href="users/sign_in">Try demo account</a>
             </div>
           </div>
         </div>
@@ -74,46 +51,48 @@
     </div><!-- /.carousel -->
 
       <div class='spacing'></div>
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
     
-    <div class="container marketing">
+    <!-- <div class="container marketing"> -->
 
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="span4" style='text-align: center'>
+      <!-- Three Columns -->
+      <div class="row column-row">
+        <div class="span4">
           <span class='imgframe'>
-            <img style="" src="http://www.wrike.com/imgs/home/Full-featured_project_management_software_Wrike.png">
+            <img src="http://www.wrike.com/imgs/home/Full-featured_project_management_software_Wrike.png">
           </span>
-          <h2 style='text-align: center'>Jot down Ideas</h2>
+          <h2>Jot down Ideas</h2>
           <p>No need for a notebook and a pencil. Simply sign in. Anywhere, anytime.</p>
-        </div><!-- /.span4 -->
+        </div>
         <div class="span4">
         <span class='imgframe'>
-            <img style="" src="http://www.wrike.com/imgs/home/All_project_data_in_one_place_Wrike.png">
+            <img src="http://www.wrike.com/imgs/home/All_project_data_in_one_place_Wrike.png">
         </span>
           <h2>Chores for the Family</h2>
           <p>Why are you the only one stuck doing the dishes? Tell your loved one to take out the trash. And the recycling.</p>
-        </div><!-- /.span4 -->
+        </div>
         <div class="span4">
         <span class='imgframe'>
-            <img style="" src="http://www.wrike.com/imgs/home/Email-integrated_project_management_software_Wrike.png">
+            <img src="http://www.wrike.com/imgs/home/Email-integrated_project_management_software_Wrike.png">
         </span>
           <h2>Collaborate Now</h2>
           <p>Are you a team player? Um.brello brings the "team" to a player with its board-sharing feature for friends or colleagues.</p>
-        </div><!-- /.span4 -->
-      </div><!-- /.row -->
+        </div>
+      </div>
 
       <div class='spacing'></div>
-      <!-- FOOTER -->
 
-           <footer>
-             <p class="pull-right"><a href="#">Back to top</a></p>
-             <p>© 2013 created by Vincent Park · <a href="https://github.com/vpark">Github</a> · <a href="mailto:vincentpark@gmail.com">Email</a></p>
+           <footer class='container'>
+             <p class="pull-right">
+               <a href="#">Back to top</a>
+             </p>
+             
+             <p>© 2013 created by Vincent Park · 
+               <a href="http://vpark.me">My Site</a> · 
+               <a href="https://github.com/vpark">Github</a> · 
+               <a href="mailto:vincentpark@gmail.com">Email</a>
+             </p>
            </footer>
 
-         </div><!-- /.container -->
+         <!-- </div> -->
 
     <%end%>
